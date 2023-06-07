@@ -1,14 +1,21 @@
-const { HOST, DB_PORT, USER, PWD, DB } = process.env
+require("dotenv").config()
+const { DB_HOST, DB_PORT, DB_USER, DB_PWD, DB } = process.env
 
 const knex = require('knex')({
-    client: 'mysql',
+    client: 'mysql2',
+    pool: { min: 2, max: 10 },
     connection: {
-        host: HOST,
+        host: DB_HOST,
         port: DB_PORT,
-        user: USER,
-        password: PWD,
+        user: DB_USER,
+        password: DB_PWD,
         database: DB
+    },
+    migrations: {
+        directory: '../models'
     }
 });
+
+console.log("Succesfully connected to Database!")
 
 module.exports = knex
