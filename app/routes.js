@@ -4,7 +4,7 @@ const router = new express.Router();
 app.use(router);
 
 router.get("/", (req, res) => {
-    res.send("Welcome to Solution")
+    res.send("<H1>Welcome to Solution</H1>")
 })
 
 
